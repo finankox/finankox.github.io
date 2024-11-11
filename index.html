@@ -5,4 +5,23 @@
         <h2>Nan je rigole, je parle francais</h2>
         <p>Ce site, c'est un plan pour moi pour tester mes capacités à coder en front</p>
     </body>
+    <script>
+        // Assure-toi d'avoir installé Axios en utilisant npm
+// npm install axios
+
+const axios = require('axios');
+
+// URL de l'API que tu veux appeler
+const apiURL = 'https://api.example.com/data';
+
+// Faire un appel GET avec Axios
+axios.get(apiURL)
+  .then(response => {
+    console.log('Données:', response.data);
+  })
+  .catch(error => {
+    console.error('Erreur:', error);
+  });
+
+    </script>
 </html>
