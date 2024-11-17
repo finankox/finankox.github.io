@@ -53,16 +53,13 @@
     </body>
   <script>
       console.log("test");
-      import axios from "axios";
-      const apiURL = 'https://api.exchange.coinbase.com/products/ETH-USD/ticker';
-
-  axios.get(apiURL)
-    .then(response => {
-      console.log('Données:', response.data);
-    })
-    .catch(error => {
-      console.error('Erreur:', error);
-    });
+      fetch('https://api.exemple.com/endpoint') 
+        .then(
+          response => response.json(),
+          console.log(response)
+        ) 
+        .then(data => console.log(data)) 
+        .catch(error => console.error('Erreur:',error));
 
   </script>
 </html>
