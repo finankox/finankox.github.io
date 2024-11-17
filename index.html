@@ -4,7 +4,7 @@
         <h1>Hy, I'm here</h1>
         <h2>Nan je rigole, je parle francais</h2>
         <p>Ce site, c'est un plan pour moi pour tester mes capacités à coder en front</p>
-        <div class="tradingview-widget-container">
+        <!--<div class="tradingview-widget-container">
           <div class="tradingview-widget-container__widget"></div>
           <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
           <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
@@ -49,23 +49,20 @@
             "all|1M"
           ]
         }
-          </script>
+          </script></div>-->
     </body>
-    <script>
-console.log("test");
-//const axios = require('axios');
-import axios from "axios";
-// URL de l'API que tu veux appeler
-const apiURL = 'https://api.example.com/data';
+  <script>
+      console.log("test");
+      import axios from "axios";
+      const apiURL = 'https://api.exchange.coinbase.com/products/ETH-USD/ticker';
 
-// Faire un appel GET avec Axios
-axios.get(apiURL)
-  .then(response => {
-    console.log('Données:', response.data);
-  })
-  .catch(error => {
-    console.error('Erreur:', error);
-  });
+  axios.get(apiURL)
+    .then(response => {
+      console.log('Données:', response.data);
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+    });
 
-    </script>
+  </script>
 </html>
