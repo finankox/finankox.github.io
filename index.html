@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <body>
         <h1>Hy, I'm here</h1>
@@ -53,13 +53,15 @@
     </body>
   <script>
       console.log("test");
-      fetch('https://api.exchange.coinbase.com//products/ETH-USD/ticker') 
-        .then(
-          response => response.json(),
-          console.log(response)
-        ) 
-        .then(data => console.log(data)) 
-        .catch(error => console.error('Erreur:',error));
+      fetch('https://api.exchange.coinbase.com/products/ETH-USD/ticker')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erreur réseau détectée');
+          }
+          return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Erreur:', error));
 
   </script>
 </html>
