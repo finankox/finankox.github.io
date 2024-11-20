@@ -4,7 +4,7 @@ import index from './index.vue.vue'
 import NotFound from './NotFound.vue'
 
 const routes = {
-  '/': Home,
+  '/': index,
 }
 
 const currentPath = ref(window.location.hash)
