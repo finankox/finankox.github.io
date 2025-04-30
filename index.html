@@ -1,29 +1,56 @@
 <script type="importmap">
-    {
-      "imports": {
-        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+
+
+
+<script type="module">
+import { createApp, ref } from 'vue'
+
+createApp({
+  setup() {
+    const price = ref(null)
+    async function fetchPrice() {
+      try {
+        const response = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
+        const result = await response.json()
+        price.value = result.price
+        console.log(price.value)
+      } catch (error) {
+        console.error('Error fetching data:', error)
       }
     }
-  </script>
-  
-  <div id="app">{{ message }}</div>
-  
-  <script type="module">
-    import { createApp } from 'vue'
-  
-    createApp({
-      data() {
-        return {
-          message: 'Hello Vue!'
-        }
-      }
-    }).mount('#app')
-  </script>
+    
+    setInterval(fetchPrice, 2000);
+
+    fetchPrice()
+    return { price }
+
+
+  }
+}).mount('#app')
+</script>
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/pictures/icon_site.png">
+    <link rel="icon" href="./pictures/icon_site.png">
     <title>Finankox</title>
 </head>
-<h1>My_title</h1>
 
+<h1>Finankox</h1>
+
+<div id="app">
+<p v-if="price" class="price">{{ price }} €</p>
+</div>
+
+<style>
+  .price{
+    font-size: 300%;
+    text-align: center;
+    font-weight: bold
+  }
+</style>
