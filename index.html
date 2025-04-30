@@ -13,41 +13,68 @@ import { createApp, ref } from 'vue'
 
 createApp({
   setup() {
-    const price1 = ref(null)
-    const trend = ref('up')
-    const color = ref('rgb(77, 230, 34)')
+    const priceBTC = ref(null)
+    const priceETH = ref(null)
+    const trendBTC = ref('up')
+    const trendETH = ref('up')
+    const colorBTC = ref('rgb(77, 230, 34)')
+    const colorETH = ref('rgb(77, 230, 34)')
+
     async function fetchPrice() {
       try {
-        const response1 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
-        const result1 = await response1.json()
-        price1.value = result1.price
+        const responseBTC = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
+        const resultBTC = await responseBTC.json()
+        priceBTC.value = resultBTC.price
 
-        const response2 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/trades?limit=2')
-        const result2 = await response2.json()
-        if (result2[0].price > result2[1].price) {
-          trend.value = 'up';
-          color.value = 'rgb(77, 230, 34)'
+        const responseETH = await fetch('https://api.exchange.coinbase.com/products/ETH-EUR/ticker')
+        const resultETH = await responseETH.json()
+        priceETH.value = resultETH.price
+
+
+        const responseBTC2 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/trades?limit=2')
+        const resultBTC2 = await responseBTC2.json()
+
+        const responseETH2 = await fetch('https://api.exchange.coinbase.com/products/ETH-EUR/trades?limit=2')
+        const resultETH2 = await responseETH2.json()
+
+
+        if (resultBTC2[0].price > resultBTC2[1].price) {
+          trendBTC.value = 'up';
+          colorBTC.value = 'rgb(77, 230, 34)'
         }
-        else if (result2[0].price < result2[1].price) {
-          trend.value = 'down';
-          color.value = 'rgb(216, 16, 16)'
+        else if (resultBTC2[0].price < resultBTC2[1].price) {
+          trendBTC.value = 'down';
+          colorBTC.value = 'rgb(216, 16, 16)'
         }
-        else if (result2[0].price == result2[1].price) {
-          trend.value = trend.value
-          color.value = color.value
+        else if (resultBTC2[0].price == resultBTC2[1].price) {
+          trendBTC.value = trendBTC.value
+          colorBTC.value = colorBTC.value
         }
 
-        console.log(price1.value)
-        console.log(trend.value)
+        if (resultETH2[0].price > resultETH2[1].price) {
+          trendETH.value = 'up';
+          colorETH.value = 'rgb(77, 230, 34)'
+        }
+        else if (resultETH2[0].price < resultETH2[1].price) {
+          trendETH.value = 'down';
+          colorETH.value = 'rgb(216, 16, 16)'
+        }
+        else if (resultETH2[0].price == resultETH2[1].price) {
+          trendETH.value = trendETH.value
+          colorETH.value = colorETH.value
+        }
+
+
+        console.log(priceBTC.value, trendBTC.value)
+        console.log(priceETH.value, trendETH.value)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
     
     setInterval(fetchPrice, 1000);
-
     fetchPrice()
-    return { price1, trend, color }
+    return { priceBTC, priceETH, trendBTC, trendETH, colorBTC, colorETH }
   }
 }).mount('#app')
 </script>
@@ -62,13 +89,26 @@ createApp({
 <nav class="nav_bar"><h1>Finankox</h1><img src="./pictures/icon_site.png" class="logo"></nav>
 <div class="jumped"></div>
 
+
 <div id="app">
-    <p v-if="price1" class="price">1 BTC = {{ price1 }} € 
-      <span v-if="trend" class="material-symbols-outlined" :class="trend" :style="{ color: color }">
-        {{ trend === 'up' ? 'arrow_drop_up' : trend === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
+    <p v-if="priceBTC" class="price">1 BTC = {{ Intl.NumberFormat('fr-FR').format(priceBTC) }} € 
+      <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
+        {{ trendBTC === 'up' ? 'arrow_drop_up' : trendBTC === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
+      </span>
+    </p>
+
+    <p v-if="priceETH" class="price">1 ETH = {{ Intl.NumberFormat('fr-FR').format(priceETH) }} € 
+      <span v-if="trendETH" class="material-symbols-outlined" :class="trendETH" :style="{ color: colorETH }">
+        {{ trendETH === 'up' ? 'arrow_drop_up' : trendETH === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
     </p>
 </div>
+
+<p class="outro">
+  <span>Datas from ©Coinbase</span><br>
+  <span>Develloped by Sanoki</span><br>
+  <span>Finankox, 2025</span><br>
+</p>
 
 <style>
   .price{
@@ -100,5 +140,11 @@ createApp({
     width: 50px;
     height: 50px;
     padding: 1%;
+  }
+  .outro{
+    text-align: center;
+    color: grey;
+    font-size: 110%;
+    margin-top: 35%;
   }
 </style>
