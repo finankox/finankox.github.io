@@ -79,6 +79,7 @@ createApp({
 }).mount('#app')
 </script>
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="./pictures/icon_site.png">
@@ -89,15 +90,14 @@ createApp({
 <nav class="nav_bar"><h1>Finankox</h1><img src="./pictures/icon_site.png" class="logo"></nav>
 <div class="jumped"></div>
 
-
 <div id="app">
-    <p v-if="priceBTC" class="price">1 BTC = {{ Intl.NumberFormat('fr-FR').format(priceBTC) }} € 
+    <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
       <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
         {{ trendBTC === 'up' ? 'arrow_drop_up' : trendBTC === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
     </p>
 
-    <p v-if="priceETH" class="price">1 ETH = {{ Intl.NumberFormat('fr-FR').format(priceETH) }} € 
+    <p v-if="priceETH" class="price" translate="no">1 ETH = {{ Intl.NumberFormat('us-US').format(priceETH) }} € 
       <span v-if="trendETH" class="material-symbols-outlined" :class="trendETH" :style="{ color: colorETH }">
         {{ trendETH === 'up' ? 'arrow_drop_up' : trendETH === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
@@ -105,10 +105,11 @@ createApp({
 </div>
 
 <p class="outro">
-  <span>Datas from ©Coinbase</span><br>
+  <span>Datas from &copy;Coinbase</span><br>
   <span>Develloped by Sanoki</span><br>
-  <span>Finankox, 2025</span><br>
+  <span>&copy;Finankox - 2025</span><br>
 </p>
+</html>
 
 <style>
   .price{
@@ -145,6 +146,6 @@ createApp({
     text-align: center;
     color: grey;
     font-size: 110%;
-    margin-top: 35%;
+    margin-top: 20%;
   }
 </style>
