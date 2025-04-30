@@ -59,7 +59,8 @@ createApp({
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 
-<h1>Finankox</h1>
+<nav class="nav_bar"><h1>Finankox</h1></nav>
+<div class="jumped"></div>
 
 <div id="app">
     <p v-if="price1" class="price">1 BTC = {{ price1 }} € 
@@ -77,5 +78,19 @@ createApp({
   }
   .material-symbols-outlined {
     font-size: 120%;
-}
+  }
+  .jumped{
+    height: 8%;
+  }
+  .nav_bar{
+    height: 6vw;
+    background-color: black;
+    color: white;
+    border-radius: 0px 0px 20px 20px;
+  }
+  h1{
+    font-size: 250%;
+    padding: 1%;
+    text-align: center;
+  }
 </style>
