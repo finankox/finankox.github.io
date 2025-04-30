@@ -13,24 +13,41 @@ import { createApp, ref } from 'vue'
 
 createApp({
   setup() {
-    const price = ref(null)
+    const price1 = ref(null)
+    const trend = ref('up')
+    const color = ref('rgb(77, 230, 34)')
     async function fetchPrice() {
       try {
-        const response = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
-        const result = await response.json()
-        price.value = result.price
-        console.log(price.value)
+        const response1 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
+        const result1 = await response1.json()
+        price1.value = result1.price
+
+        const response2 = await fetch('https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=2')
+        const result2 = await response2.json()
+        if (result2[0].price > result2[1].price) {
+          trend.value = 'up';
+          color.value = 'rgb(77, 230, 34)'
+        }
+        else if (result2[0].price < result2[1].price) {
+          trend.value = 'down';
+          color.value = 'rgb(216, 16, 16)'
+        }
+        else if (result2[0].price == result2[1].price) {
+          trend.value = trend.value
+          color.value = color.value
+        }
+
+        console.log(price1.value)
+        console.log(trend.value)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
     
-    setInterval(fetchPrice, 2000);
+    setInterval(fetchPrice, 1000);
 
     fetchPrice()
-    return { price }
-
-
+    return { price1, trend, color }
   }
 }).mount('#app')
 </script>
@@ -39,18 +56,26 @@ createApp({
     <meta charset="UTF-8">
     <link rel="icon" href="./pictures/icon_site.png">
     <title>Finankox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 
 <h1>Finankox</h1>
 
 <div id="app">
-<p v-if="price" class="price">{{ price }} €</p>
+    <p v-if="price1" class="price">1 BTC = {{ price1 }} € 
+      <span v-if="trend" class="material-symbols-outlined" :class="trend" :style="{ color: color }">
+        {{ trend === 'up' ? 'arrow_drop_up' : trend === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
+      </span>
+    </p>
 </div>
 
 <style>
   .price{
     font-size: 300%;
     text-align: center;
-    font-weight: bold
+    font-weight: bold;
   }
+  .material-symbols-outlined {
+    font-size: 120%;
+}
 </style>
