@@ -15,10 +15,13 @@ createApp({
   setup() {
     const priceBTC = ref(null)
     const priceETH = ref(null)
+    const priceSOL = ref(null)
     const trendBTC = ref('up')
     const trendETH = ref('up')
+    const trendSOL = ref('up')
     const colorBTC = ref('rgb(77, 230, 34)')
     const colorETH = ref('rgb(77, 230, 34)')
+    const colorSOL = ref('rgb(77, 230, 34)')
 
     async function fetchPrice() {
       try {
@@ -30,12 +33,19 @@ createApp({
         const resultETH = await responseETH.json()
         priceETH.value = resultETH.price
 
+        const responseSOL = await fetch('https://api.exchange.coinbase.com/products/SOL-EUR/ticker')
+        const resultSOL = await responseSOL.json()
+        priceSOL.value = resultSOL.price
+
 
         const responseBTC2 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/trades?limit=2')
         const resultBTC2 = await responseBTC2.json()
 
         const responseETH2 = await fetch('https://api.exchange.coinbase.com/products/ETH-EUR/trades?limit=2')
         const resultETH2 = await responseETH2.json()
+
+        const responseSOL2 = await fetch('https://api.exchange.coinbase.com/products/SOL-EUR/trades?limit=2')
+        const resultSOL2 = await responseSOL2.json()
 
 
         if (resultBTC2[0].price > resultBTC2[1].price) {
@@ -64,9 +74,23 @@ createApp({
           colorETH.value = colorETH.value
         }
 
+        if (resultSOL2[0].price > resultSOL2[1].price) {
+          trendSOL.value = 'up';
+          colorSOL.value = 'rgb(77, 230, 34)'
+        }
+        else if (resultSOL2[0].price < resultSOL2[1].price) {
+          trendSOL.value = 'down';
+          colorSOL.value = 'rgb(216, 16, 16)'
+        }
+        else if (resultSOL2[0].price == resultSOL2[1].price) {
+          trendSOL.value = trendSOL.value
+          colorSOL.value = colorSOL.value
+        }
 
-        console.log(priceBTC.value, trendBTC.value)
-        console.log(priceETH.value, trendETH.value)
+
+        console.log('BTC:', priceBTC.value, trendBTC.value)
+        console.log('ETH:', priceETH.value, trendETH.value)
+        console.log('SOL:', priceSOL.value, trendSOL.value)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -74,7 +98,7 @@ createApp({
     
     setInterval(fetchPrice, 1000);
     fetchPrice()
-    return { priceBTC, priceETH, trendBTC, trendETH, colorBTC, colorETH }
+    return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
 }).mount('#app')
 </script>
@@ -100,6 +124,12 @@ createApp({
     <p v-if="priceETH" class="price" translate="no">1 ETH = {{ Intl.NumberFormat('us-US').format(priceETH) }} € 
       <span v-if="trendETH" class="material-symbols-outlined" :class="trendETH" :style="{ color: colorETH }">
         {{ trendETH === 'up' ? 'arrow_drop_up' : trendETH === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
+      </span>
+    </p>
+
+    <p v-if="priceSOL" class="price" translate="no">1 SOL = {{ Intl.NumberFormat('us-US').format(priceSOL) }} € 
+      <span v-if="trendSOL" class="material-symbols-outlined" :class="trendSOL" :style="{ color: colorSOL }">
+        {{ trendSOL === 'up' ? 'arrow_drop_up' : trendSOL === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
     </p>
 </div>
@@ -135,7 +165,6 @@ createApp({
   h1{
     font-size: 250%;
     padding: 1%;
-    text-align: center;
   }
   .logo{
     width: 50px;
