@@ -1,79 +1,86 @@
-<script type="importmap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finankox - Video service</title>
+  <link rel="icon" href="./pictures/icon_site.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+  
+  <!-- Importmap pour charger Vue 3 -->
+  <script type="importmap">
     {
       "imports": {
         "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
       }
     }
   </script>
-  
-<script type="module">
-  import { createApp, ref } from 'vue'
-  createApp({
-    setup() {
-        const lien = ref("")
-        const choosed = ref("")
-
-        function itok() {
-            lien.value = "https://www.youtube.com/embed/" + choosed.value
-            console.log(lien.value)
-        }
-
-        return { lien, itok, choosed }
-    }
-}).mount('#app')
-</script>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./pictures/icon_site.png">
-    <title>Finankox</title>
 </head>
-
-<nav class="nav_bar"><h1>Finankox - Video service</h1><img src="./pictures/icon_site.png" class="logo"></nav>
-<div class="jumped"></div>
-
-<div id="app">
+  <nav class="nav_bar">
+    <h1>Finankox - Video service</h1>
+    <img src="./pictures/icon_site.png" class="logo">
+  </nav>
+  <div class="jumped"></div>
+  
+  <div id="app">
     <input v-model="choosed" placeholder="You ID" />
-    <button @click="itok()" class="boton">watch</button>
-  </div>
-
+    <button @click="itok()" class="boton">Watch</button>
+    
     <div v-if="lien">
-        <iframe width="560" 
-        height="315" 
-        :src="lien" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-        </iframe>
-</div>
-</div>
-
-</html>
-
-<style>
-    .jumped{
-      height: 8%;
+      <iframe width="560" 
+              height="315" 
+              :src="lien" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+  
+  <!-- Application Vue en module -->
+  <script type="module">
+    import { createApp, ref } from 'vue';
+    
+    createApp({
+      setup() {
+        const lien = ref("");
+        const choosed = ref("");
+  
+        function itok() {
+          // Construit l'URL de la vidéo en utilisant la valeur de "choosed"
+          lien.value = "https://www.youtube.com/embed/" + choosed.value;
+          console.log(lien.value);
+        }
+  
+        return { lien, choosed, itok };
+      }
+    }).mount('#app');
+  </script>
+  
+  <!-- Styles personnalisés -->
+  <style>
+    .jumped {
+      height: 20px;
     }
-    .nav_bar{
+    .nav_bar {
       height: 6vw;
       background-color: black;
       color: white;
-      border-radius: 0px 0px 20px 20px;
+      border-radius: 0 0 20px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 1%;
     }
-    h1{
+    h1 {
       font-size: 250%;
       padding: 1%;
     }
-    .logo{
+    .logo {
       width: 50px;
       height: 50px;
       padding: 1%;
     }
-    input{
+    input {
       font-family: "SF Pro";
       max-width: 190px;
       padding: 0.875rem;
@@ -84,12 +91,10 @@
       outline: none;
       transition: ease 0.25s;
     }
-
-    .input:focus{
+    input:focus {
       box-shadow: 5.5px 7px 0 black;
     }
-
-    .boton{
+    .boton {
       padding: 10px 20px;
       border: 4px solid #2c2c2c;
       background-color: #1a1a1a;
@@ -110,3 +115,4 @@
       background: #292929;
     }
   </style>
+</html>
