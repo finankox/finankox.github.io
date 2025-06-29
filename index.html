@@ -6,8 +6,6 @@
   }
 </script>
 
-
-
 <script type="module">
 import { createApp, ref } from 'vue'
 
@@ -86,11 +84,6 @@ createApp({
           trendSOL.value = trendSOL.value
           colorSOL.value = colorSOL.value
         }
-
-
-        console.log('BTC:', priceBTC.value, trendBTC.value)
-        console.log('ETH:', priceETH.value, trendETH.value)
-        console.log('SOL:', priceSOL.value, trendSOL.value)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -101,7 +94,53 @@ createApp({
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
 }).mount('#app')
+
+
+var sidenav = document.getElementById("mySidenav");
+var openBtn = document.getElementById("openBtn");
+var closeBtn = document.getElementById("closeBtn");
+
+openBtn.onclick = openNav;
+closeBtn.onclick = closeNav;
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  sidenav.classList.add("active");
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  sidenav.classList.remove("active");
+}
 </script>
+
+<style>
+  .price{
+    font-size: 300%;
+    text-align: center;
+    font-weight: bold;
+  }
+
+.material-symbols-outlined {
+    font-size: 120%;
+}
+
+.jumped{
+    height: 8%;
+}
+.outro{
+    text-align: center;
+    color: grey;
+    font-size: 110%;
+    margin-top: 20%;
+}
+
+.hided{
+    color: grey;
+    text-decoration: none;
+}
+
+</style>
 
 <html lang="en">
 <head>
@@ -112,7 +151,25 @@ createApp({
     <link rel="stylesheet" href="index.css">
 </head>
 
-<nav class="nav_bar"><h1>Finankox</h1><img src="./pictures/icon_site.png" class="logo"></nav>
+<nav class="nav_bar">
+  <h1>Finankox</h1>
+  <img src="./pictures/icon_site.png" class="logo">
+
+  <div id="mySidenav" class="sidenav">
+  <a id="closeBtn" href="#" class="close">×</a>
+  <ul>
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./search.html">Search</a></li>
+    <li><a href="./about.html">About</a></li>
+  </ul>
+</div>
+
+<a href="#" id="openBtn">
+    <span class="burger-icon"></span>
+    <span class="burger-icon"></span>
+    <span class="burger-icon"></span>
+</a>
+</nav>
 <div class="jumped"></div>
 
 <div id="app">
@@ -137,7 +194,7 @@ createApp({
 
 <p class="outro">
   <span>Datas from &copy;Coinbase</span><br>
-  <span><a href="./tubeyou.html">Develloped by Sanoki</a></span><br>
+  <span><a href="./tubeyou.html" class="hided">Develloped by Sanoki</a></span><br>
   <span>&copy;Finankox - 2025</span><br>
 </p>
 </html>

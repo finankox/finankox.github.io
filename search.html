@@ -1,0 +1,212 @@
+<script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+</script>
+
+<script type="module">
+import { createApp, ref } from 'vue';
+    
+createApp({
+  setup() {
+    const price = ref(null);
+    const choosed = ref(null);
+    async function fetchPrice() {
+      try {
+        const response = await fetch('https://api.exchange.coinbase.com/products/' + choosed.value + '-EUR/ticker')
+        const result = await response.json()
+        price.value = result.price
+        console.log(price.value)
+      }
+      
+      catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+    function sea() {
+      fetchPrice()
+      setInterval(fetchPrice, 2000);
+    let currentSymbol = "COINBASE:" + choosed.value + "USD|1D";
+
+    
+    const widgetContainer = document.querySelector('.tradingview-widget-container__widget');
+
+    // Supprimer tout contenu existant dans le conteneur
+    widgetContainer.innerHTML = '';
+
+    // Script du widget TradingView
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
+    script.async = true;
+    script.innerHTML = `
+      {
+        "lineWidth": 2,
+        "lineType": 0,
+        "chartType": "area",
+        "fontColor": "rgb(106, 109, 120)",
+        "gridLineColor": "rgba(46, 46, 46, 0.06)",
+        "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+        "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+        "backgroundColor": "#ffffff",
+        "widgetFontColor": "#0F0F0F",
+        "upColor": "#22ab94",
+        "downColor": "#f7525f",
+        "borderUpColor": "#22ab94",
+        "borderDownColor": "#f7525f",
+        "wickUpColor": "#22ab94",
+        "wickDownColor": "#f7525f",
+        "colorTheme": "light",
+        "isTransparent": false,
+        "locale": "en",
+        "chartOnly": false,
+        "scalePosition": "right",
+        "scaleMode": "Normal",
+        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+        "valuesTracking": "1",
+        "changeMode": "price-and-percent",
+        "symbols": [["${currentSymbol}"]],
+        "dateRanges": ["1d|1", "1w|15", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
+        "fontSize": "10",
+        "headerFontSize": "medium",
+        "autosize": true,
+        "width": "100%",
+        "height": "100%",
+        "noTimeScale": false,
+        "hideDateRanges": false,
+        "hideMarketStatus": false,
+        "hideSymbolLogo": false
+      }
+    `;
+    document.querySelector('.tradingview-widget-container__widget').appendChild(script);
+    }
+    return { price, choosed, sea };
+  }
+}).mount('#app');
+
+
+
+
+
+var sidenav = document.getElementById("mySidenav");
+var openBtn = document.getElementById("openBtn");
+var closeBtn = document.getElementById("closeBtn");
+
+openBtn.onclick = openNav;
+closeBtn.onclick = closeNav;
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  sidenav.classList.add("active");
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  sidenav.classList.remove("active");
+}
+</script>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./pictures/icon_site.png">
+    <title>Finankox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<nav class="nav_bar">
+  <h1>Finankox</h1>
+  <img src="./pictures/icon_site.png" class="logo">
+
+  <div id="mySidenav" class="sidenav">
+  <a id="closeBtn" href="#" class="close">×</a>
+  <ul>
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./search.html">Search</a></li>
+    <li><a href="./about.html">About</a></li>
+  </ul>
+</div>
+
+<a href="#" id="openBtn">
+    <span class="burger-icon"></span>
+    <span class="burger-icon"></span>
+    <span class="burger-icon"></span>
+</a>
+</nav>
+<div class="jumped"></div>
+
+<div id="app">
+<div class="box">
+  <input v-model="choosed" placeholder="Token's name" />
+  <button class="carr" @click="sea()">
+    <span class="material-symbols-outlined">search</span>
+  </button>
+</div>
+
+<div class="jumped"></div>
+
+<div v-if="price" class="prix">
+  1 {{choosed}} : {{price}} €
+
+
+
+</div>
+</div>
+
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"></div>
+</div>
+
+<style>
+input {
+    font-family: "SF Pro";
+    width: 70%;
+    max-width: 400px;
+    padding: 0.875rem;
+    font-size: 2rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    margin-top: 4%;
+}
+
+input:focus {
+    box-shadow: 11px 14px 0 black;
+}
+.material-symbols-outlined {
+  font-size: 350%;
+  color: black;
+}
+.carr{
+  width: 4%;
+  min-width: 70px;
+  border-radius: 1rem;
+  border:4px solid black;
+  margin-top: 4%;
+  margin-left: 2%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prix{
+  font-size: 250%;
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+
+
+</html>
