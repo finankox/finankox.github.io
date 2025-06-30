@@ -30,10 +30,7 @@ createApp({
       setInterval(fetchPrice, 2000);
     let currentSymbol = "COINBASE:" + choosed.value + "USD|1D";
 
-    
     const widgetContainer = document.querySelector('.tradingview-widget-container__widget');
-
-    // Supprimer tout contenu existant dans le conteneur
     widgetContainer.innerHTML = '';
 
     // Script du widget TradingView
@@ -69,11 +66,11 @@ createApp({
         "changeMode": "price-and-percent",
         "symbols": [["${currentSymbol}"]],
         "dateRanges": ["1d|1", "1w|15", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
-        "fontSize": "10",
+        "fontSize": "25",
         "headerFontSize": "medium",
         "autosize": true,
         "width": "100%",
-        "height": "100%",
+        "height": "40%",
         "noTimeScale": false,
         "hideDateRanges": false,
         "hideMarketStatus": false,
@@ -85,10 +82,6 @@ createApp({
     return { price, choosed, sea };
   }
 }).mount('#app');
-
-
-
-
 
 var sidenav = document.getElementById("mySidenav");
 var openBtn = document.getElementById("openBtn");
@@ -108,15 +101,13 @@ function closeNav() {
 }
 </script>
 
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./pictures/icon_site.png">
-    <title>Finankox</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="search.css">
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <link rel="icon" href="./pictures/icon_site.png">
+  <title>Finankox</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <nav class="nav_bar">
@@ -124,89 +115,50 @@ function closeNav() {
   <img src="./pictures/icon_site.png" class="logo">
 
   <div id="mySidenav" class="sidenav">
-  <a id="closeBtn" href="#" class="close">×</a>
-  <ul>
-    <li><a href="./index.html">Home</a></li>
-    <li><a href="./search.html">Search</a></li>
-    <li><a href="./about.html">About</a></li>
-  </ul>
-</div>
+    <a id="closeBtn" href="#" class="close">×</a>
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./search.html">Search</a></li>
+      <li><a href="./about.html">About</a></li>
+    </ul>
+  </div>
 
-<a href="#" id="openBtn">
+  <a href="#" id="openBtn">
     <span class="burger-icon"></span>
     <span class="burger-icon"></span>
     <span class="burger-icon"></span>
-</a>
+  </a>
 </nav>
+
 <div class="jumped"></div>
 
 <div id="app">
-<div class="box">
-  <input v-model="choosed" placeholder="Token's name" />
-  <button class="carr" @click="sea()">
-    <span class="material-symbols-outlined">search</span>
-  </button>
+  <div class="box">
+    <input class="inputed" v-model="choosed" placeholder="Token's name" />
+    <button class="carr" @click="sea()">
+      <span class="material-symbols-outlined">search</span>
+    </button>
+  </div>
+
+  <div class="jumped"></div>
+
+  <div v-if="price" class="price">
+    1 {{choosed}} : {{price}} €
+  </div>
 </div>
 
 <div class="jumped"></div>
 
-<div v-if="price" class="prix">
-  1 {{choosed}} : {{price}} €
-
-
-
-</div>
-</div>
-
 <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"></div>
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"></div>
 </div>
 
 <style>
-input {
-    font-family: "SF Pro";
-    width: 70%;
-    max-width: 400px;
-    padding: 0.875rem;
-    font-size: 2rem;
-    border: 1.5px solid #000;
-    border-radius: 0.5rem;
-    box-shadow: 2.5px 3px 0 #000;
-    outline: none;
-    transition: ease 0.25s;
-    margin-top: 4%;
-}
-
-input:focus {
-    box-shadow: 11px 14px 0 black;
-}
 .material-symbols-outlined {
   font-size: 350%;
   color: black;
 }
-.carr{
-  width: 4%;
-  min-width: 70px;
-  border-radius: 1rem;
-  border:4px solid black;
-  margin-top: 4%;
-  margin-left: 2%;
-  background-color: white;
-  cursor: pointer;
-}
-
-.box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.prix{
-  font-size: 250%;
-  font-weight: bold;
-  text-align: center;
-}
 </style>
-
 
 </html>
