@@ -1,0 +1,11 @@
+<script>
+  const path = window.location.pathname;
+  const param = path.split("/searching/")[1];
+
+  if (param) {
+    // Utilise `param` pour faire un traitement dynamique
+    document.body.innerHTML = `<h1>Résultat de recherche : ${decodeURIComponent(param)}</h1>`;
+  } else {
+    document.body.innerHTML = `<h1>Aucune recherche détectée</h1>`;
+  }
+</script>
