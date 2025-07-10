@@ -1,3 +1,13 @@
+<head>
+  <script>
+  // Vérifie si l'URL contient 'searching/'
+  if (window.location.href.includes('searching/')) {
+    // Redirige vers indeed.html
+    window.location.href = '/indeed.html';
+  }
+</script>
+</head>
+
 <script>
   const path = window.location.pathname;
   const param = path.split("/searching/")[1];
