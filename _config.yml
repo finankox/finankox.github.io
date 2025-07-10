@@ -46,9 +46,17 @@ defaults:
       title: "about"
       permalink: /about
 
+  - scope:
+      path: "search.html"
+      type: "pages"
+    values:
+      layout: "page"
+      title: "search"
+      permalink: /search
+
 # Configuration pour les redirections
   - scope:
-      path: "searching"
+      path: "indeed.html"
     values:
-      layout: "redirect"
-      permalink: /redirect.html
+      layout: ""
+      permalink: /searching/:title
