@@ -20,17 +20,6 @@ url: "https://finankox.github.io" # l'URL de votre site
 defaults:
   - scope:
       path: ""
-    values:
-      layout: "default"
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-
-# Configuration pour la page d'accueil
-  - scope:
-      path: ""
       type: "pages"
     values:
       layout: "page"
@@ -59,4 +48,4 @@ defaults:
       path: "indeed.html"
     values:
       layout: ""
-      permalink: /searching/:title
+      permalink: /searching/
