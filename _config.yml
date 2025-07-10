@@ -33,6 +33,8 @@ defaults:
 # Configuration pour les redirections
   - scope:
       path: "indeed.html"
+      type: "pages"
     values:
-      layout: ""
-      permalink: /searching/
+      layout: "page"
+      title: "flop"
+      permalink: /searching
