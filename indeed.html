@@ -9,3 +9,9 @@
     document.body.innerHTML = `<h1>Aucune recherche détectée</h1>`;
   }
 </script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("query");
+
+  document.body.innerHTML = `<h1>Résultat pour : ${query}</h1>`;
+</script>
