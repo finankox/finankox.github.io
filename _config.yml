@@ -9,7 +9,6 @@ defaults:
       path: ""
       type: "pages"
     values:
-      layout: "page"
       Title: "index"
       permalink: /
 
@@ -18,7 +17,6 @@ defaults:
       path: "about.html"
       type: "pages"
     values:
-      layout: "page"
       title: "about"
       permalink: /about
 
@@ -26,7 +24,6 @@ defaults:
       path: "search.html"
       type: "pages"
     values:
-      layout: "page"
       title: "search"
       permalink: /search
 
@@ -35,6 +32,5 @@ defaults:
       path: "indeed.html"
       type: "pages"
     values:
-      layout: "page"
       title: "flop"
       permalink: /searching
