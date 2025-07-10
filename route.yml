@@ -1,10 +1,54 @@
-docs:
+#docs:
 
-- title: Index
-  url: index.html
+#- title: index
+#  url: index.html
 
-- title: About
-  url: about.html
+#- title: about
+#  url: about.html
 
-- title: Search
-  url: search.html
+#- title: search
+#  url: search.html
+
+
+# Configuration de base du site
+title: Mon Site Jekyll
+description: Un site web construit avec Jekyll et hébergé sur GitHub Pages
+baseurl: "" # le sous-chemin de votre site, par exemple /blog
+url: "https://finankox.github.io" # l'URL de votre site
+
+# Configuration des pages
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Configuration pour la page d'accueil
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      Title: "index"
+      permalink: /
+
+# Configuration pour la page 'about'
+  - scope:
+      path: "about.html"
+      type: "pages"
+    values:
+      layout: "page"
+      title: "about"
+      permalink: /about
+
+# Configuration pour les redirections
+  - scope:
+      path: "searching"
+    values:
+      layout: "redirect"
+      permalink: /redirect.html

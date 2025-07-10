@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirection...</title>
+    <script>
+        // Extraire la partie de l'URL après 'searching/'
+        var pathParts = window.location.pathname.split('/');
+        var searchingIndex = pathParts.indexOf('searching');
+        if (searchingIndex !== -1 && pathParts.length > searchingIndex + 1) {
+            var target = pathParts[searchingIndex + 1];
+            // Rediriger vers une URL spécifique
+            window.location.href = '/indeed.html'; // Remplacez par le chemin vers votre document
+        }
+    </script>
+</head>
+<body>
+    <p>Redirection en cours...</p>
+</body>
+</html>
