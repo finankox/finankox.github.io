@@ -1,5 +1,5 @@
 ;(function() {
-  const app = document.getElementById('app');
+  const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
 
   // Charge un fragment HTML et injecte le terme, si présent
@@ -16,7 +16,7 @@
   }
 
   router
-    .on('/', () => render('index.html'))
+    .on('/', () => render('home.html'))
     .on('/about', () => render('about.html'))
     .on('/search', () => render('search.html'))
 
