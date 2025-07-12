@@ -17,6 +17,9 @@
 
   router
     .on('/', () => render('index.html'))
+    .on('/about', () => render('about.html'))
+    .on('/search', () => render('search.html'))
+
     .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
     .notFound(() => render('404.html', window.location.pathname))
     .resolve();
