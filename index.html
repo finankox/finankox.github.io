@@ -13,6 +13,39 @@ import { createApp, ref } from 'vue'
 
 createApp({
   setup() {
+
+    ;(function() {
+  const app = document.getElementById('app');
+  const router = new Navigo('/', { hash: false });
+
+  // Charge un fragment HTML et injecte le terme, si présent
+  function render(fragment, term = '') {
+    fetch(fragment)
+      .then(res => res.text())
+      .then(html => {
+        app.innerHTML = html;
+        // Injecte le mot-clé recherché
+        app.querySelectorAll('[data-search-term]').forEach(el => {
+          el.textContent = decodeURIComponent(term);
+        });
+      });
+  }
+
+  router
+    .on('/', () => render('index.html'))
+    .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
+    .notFound(() => render('404.html', window.location.pathname))
+    .resolve();
+
+  // Réactive le router sur les liens internes
+  document.body.addEventListener('click', e => {
+    if (e.target.matches('[data-navigo]')) {
+      e.preventDefault();
+      router.navigate(e.target.getAttribute('href'));
+    }
+  });
+})();
+
     const priceBTC = ref(null)
     const priceETH = ref(null)
     const priceSOL = ref(null)
@@ -124,7 +157,6 @@ function closeNav() {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <link rel="stylesheet" href="index.css">
     <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
-  <script src="router.js"></script>
 </head>
 
 <nav class="nav_bar">
