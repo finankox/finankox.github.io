@@ -1,27 +1,44 @@
+<html lang="en">
 <head>
-  <script>
-  // Vérifie si l'URL contient 'searching/'
-  if (window.location.href.includes('searching/')) {
-    // Redirige vers indeed.html
-    window.location.href = '/indeed.html';
-  }
-</script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./pictures/icon_site.png">
+    <title>Finankox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="index.css">
+    <script>
+        window.onload = function() {
+            if (window.location.pathname.includes('/searching/')) {
+                window.location.href = '/indeed.html';
+            }
+        };
+    </script>
 </head>
 
-<script>
-  const path = window.location.pathname;
-  const param = path.split("/searching/")[1];
+<nav class="nav_bar">
+  <h1>Finankox</h1>
+  <img src="./pictures/icon_site.png" class="logo">
 
-  if (param) {
-    // Utilise `param` pour faire un traitement dynamique
-    document.body.innerHTML = `<h1>Résultat de recherche : ${decodeURIComponent(param)}</h1>`;
-  } else {
-    document.body.innerHTML = `<h1>Aucune recherche détectée</h1>`;
-  }
-</script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get("query");
+  <div id="mySidenav" class="sidenav">
+  <a id="closeBtn" href="#" class="close">×</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="search">Search</a></li>
+    <li><a href="about">About</a></li>
+  </ul>
+</div>
 
-  document.body.innerHTML = `<h1>Résultat pour : ${query}</h1>`;
-</script>
+<a href="#" id="openBtn">
+  <span class="burger-icon"></span>
+  <span class="burger-icon"></span>
+  <span class="burger-icon"></span>
+</a>
+</nav>
+
+<div class="jumped"></div>
+<div class="jumped"></div>
+
+<div class="price">Well, maybe</div>
+
+<script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
+<script src="router.js"></script>
+</html>
