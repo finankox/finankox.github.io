@@ -1,31 +1,25 @@
-;(function() {
-  const app = document.getElementById('app');
-  const router = new Navigo('/', { hash: false });
+const router = new Navigo('/', {
+  hash:        false,   // mode history (true pour hash)
+  linksSelector: "[data-navigo]" // sélecteur des liens à intercepter
+});
 
-  // Charge un fragment HTML et injecte le terme, si présent
-  function render(fragment, term = '') {
-    fetch(fragment)
-      .then(res => res.text())
-      .then(html => {
-        app.innerHTML = html;
-        // Injecte le mot-clé recherché
-        app.querySelectorAll('[data-search-term]').forEach(el => {
-          el.textContent = decodeURIComponent(term);
-        });
-      });
-  }
-
-  router
-    .on('/', () => render('index.html'))
-    .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
-    .notFound(() => render('404.html', window.location.pathname))
-    .resolve();
-
-  // Réactive le router sur les liens internes
-  document.body.addEventListener('click', e => {
-    if (e.target.matches('[data-navigo]')) {
-      e.preventDefault();
-      router.navigate(e.target.getAttribute('href'));
-    }
-  });
-})();
+router
+  .on('/', () => {
+    // Callback pour la route racine
+    loadPage('index.html');
+  })
+  .on('/about', () => {
+    loadPage('about.html');
+  })
+  .on('/search', () => {
+    loadPage('search.html');
+  })
+  .on('/searched/:term+', ({ data }) => {
+    // ':term+' capture tout après /searched/
+    loadPage('indeed.html', data.term);
+  })
+  .notFound(() => {
+    // Route fallback (404)
+    loadPage('404.html');
+  })
+  .resolve();
