@@ -6,6 +6,14 @@
     }
 </script>
 
+<script type="importmap">
+  {
+    "imports": {
+      "navigo": "https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"
+    }
+  }
+</script>
+
 <script type="module">
 import { createApp, ref } from 'vue';
     
@@ -186,6 +194,8 @@ function closeNav() {
   <div class="tradingview-widget-container__widget"></div>
   <div class="tradingview-widget-copyright"></div>
 </div>
+
+<script src="router.js"></script>
 
 <style>
 .material-symbols-outlined {
