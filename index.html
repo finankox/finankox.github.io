@@ -1,41 +1,43 @@
 <script type="module">
-import { createApp, ref, onMounted } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-    import { createRouter, createWebHistory } from 'https://unpkg.com/vue-router@4/dist/vue-router.esm-browser.js'
 
-    // Wrapper générique pour charger un fragment HTML
-    const Fragment = file => ({
-      template: `<div v-html="html"></div>`,
-      props: ['term'],
-      setup(props) {
-        const html = ref('')
-        onMounted(async () => {
-          html.value = await fetch(file).then(r => r.text())
-          if (props.term) {
-            const span = document.querySelector('[data-search-term]')
-            if (span) span.textContent = decodeURIComponent(props.term)
-          }
-        })
-        return { html }
-      }
-    })
+import { createApp, ref, onMounted } from 'vue'
+  import { createRouter, createWebHistory } from 'vue-router'
 
-    // 2) Déclaration des routes
-    const routes = [
-      { path: '/', component: Fragment('index.html') },
-      {
-        path: '/searched/:term(.*)',
-        component: Fragment('searched.html'),
-        props: route => ({ term: route.params.term })
-      },
-      { path: '/about', component: Fragment('about.html') },
-      { path: '/:catchAll(.*)', component: Fragment('404.html') }
-    ]
+  // Composant pour charger un fragment HTML
+  const Fragment = (file) => ({
+    template: `<div v-html="html"></div>`,
+    setup(props, { attrs }) {
+      const html = ref('')
+      onMounted(async () => {
+        const res = await fetch(file)
+        html.value = await res.text()
+        // Injecter term dans <span data-search-term>
+        const param = attrs.term
+        if (param) {
+          const span = document.querySelector('[data-search-term]')
+          if (span) span.textContent = decodeURIComponent(param)
+        }
+      })
+      return { html }
+    }
+  })
 
-    const router = createRouter({
-      history: createWebHistory(),
-      routes
-    })
+  // Déclaration des routes
+  const routes = [
+    { path: '/', component: Fragment('./index.html') },
+    {
+      path: '/searched/:term(.*)',
+      component: Fragment('./searched.html'),
+      props: route => ({ term: route.params.term })
+    },
+    { path: '/about', component: Fragment('./about.html') },
+    { path: '/:catchAll(.*)', component: Fragment('404.html') }
+  ]
 
+  const router = createRouter({
+    history: createWebHistory(),
+    routes
+  })
 
 
 
