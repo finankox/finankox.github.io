@@ -1,28 +1,4 @@
-<script type="importmap">
-  {
-    "imports": {
-      "navigo": "https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"
-    }
-  }
-</script>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./pictures/icon_site.png">
-    <title>Finankox</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="index.css">
-    <script src="404.js"></script>
-</head>
-
-
-<div class="jumped"></div>
-
-<div class="price">There is nothing here ...</div>
-
-<!--<script src="router.js"></script>-->
-<script>
+  console.log("one")
 ;(function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
@@ -57,5 +33,21 @@
     }
   });
 })();
-</script>
-</html>
+
+
+var sidenav = document.getElementById("mySidenav");
+var openBtn = document.getElementById("openBtn");
+var closeBtn = document.getElementById("closeBtn");
+
+openBtn.onclick = openNav;
+closeBtn.onclick = closeNav;
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  sidenav.classList.add("active");
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  sidenav.classList.remove("active");
+}

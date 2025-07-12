@@ -90,36 +90,5 @@ function closeNav() {
 
 
 
-function loadPage(pageUrl) {
-            fetch(pageUrl)
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const scripts = doc.querySelectorAll('script');
 
-                    // Exécuter les scripts
-                    scripts.forEach(script => {
-                        if (script.src) {
-                            // Si le script a une source externe
-                            const newScript = document.createElement('script');
-                            newScript.src = script.src;
-                            document.body.appendChild(newScript);
-                        } else {
-                            // Si le script est inline
-                            const newScript = document.createElement('script');
-                            newScript.textContent = script.textContent;
-                            document.body.appendChild(newScript);
-                        }
-                    });
-
-                    // Insérer le contenu HTML
-                    const content = doc.querySelector('body').innerHTML;
-                    document.getElementById('content').innerHTML = content;
-                })
-                .catch(error => console.error('Error loading page:', error));
-        }
-
-        // Charger la page par défaut (par exemple, home.html)
-        loadPage('home.html');
 </script>

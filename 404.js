@@ -1,28 +1,3 @@
-<script type="importmap">
-  {
-    "imports": {
-      "navigo": "https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"
-    }
-  }
-</script>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./pictures/icon_site.png">
-    <title>Finankox</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="index.css">
-    <script src="404.js"></script>
-</head>
-
-
-<div class="jumped"></div>
-
-<div class="price">There is nothing here ...</div>
-
-<!--<script src="router.js"></script>-->
-<script>
 ;(function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
@@ -57,5 +32,3 @@
     }
   });
 })();
-</script>
-</html>

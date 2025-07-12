@@ -1,12 +1,4 @@
-<script type="importmap">
-    {
-      "imports": {
-        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-      }
-    }
-</script>
-<script type="module">
-  console.log("one")
+console.log("one")
 import { createApp, ref } from 'vue';
     
 createApp({
@@ -167,51 +159,3 @@ function closeNav() {
     }
   });
 })();
-</script>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="./pictures/icon_site.png">
-  <title>Finankox</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-  <link rel="stylesheet" href="index.css">
-  <script src="search.js"></script>
-</head>
-
-
-
-<div id="app">
-  <div class="box">
-    <input class="inputed" v-model="choosed" placeholder="Token's name" />
-    <button class="carr" @click="sea()">
-      <span class="material-symbols-outlined">search</span>
-    </button>
-  </div>
-
-  <div class="jumped"></div>
-
-  <div v-if="elsed" class="price">
-    1 {{elsed}} : <span>{{price}} $</span>
-  </div>
-</div>
-
-<div class="jumped"></div>
-
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"></div>
-</div>
-
-<script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
-<!--<script src="router.js"></script>-->
-
-
-<style>
-.material-symbols-outlined {
-  font-size: 350%;
-  color: black;
-}
-</style>
-
-</html>

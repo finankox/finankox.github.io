@@ -1,13 +1,3 @@
-<script type="importmap">
-  {
-    "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-    }
-  }
-</script>
-
-
-<script type="module">
   console.log("one")
 import { createApp, ref } from 'vue'
 
@@ -151,49 +141,3 @@ function closeNav() {
     }
   });
 })();
-</script>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="./pictures/icon_site.png">
-    <title>Finankox</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="index.css">
-    <script src="home.js"></script>
-</head>
-
-<div id="app">
-    <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
-      <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
-        {{ trendBTC === 'up' ? 'arrow_drop_up' : trendBTC === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
-      </span>
-    </p>
-
-    <p v-if="priceETH" class="price" translate="no">1 ETH = {{ Intl.NumberFormat('us-US').format(priceETH) }} € 
-      <span v-if="trendETH" class="material-symbols-outlined" :class="trendETH" :style="{ color: colorETH }">
-        {{ trendETH === 'up' ? 'arrow_drop_up' : trendETH === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
-      </span>
-    </p>
-
-    <p v-if="priceSOL" class="price" translate="no">1 SOL = {{ Intl.NumberFormat('us-US').format(priceSOL) }} € 
-      <span v-if="trendSOL" class="material-symbols-outlined" :class="trendSOL" :style="{ color: colorSOL }">
-        {{ trendSOL === 'up' ? 'arrow_drop_up' : trendSOL === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
-      </span>
-    </p>
-</div>
-
-<a href="/searched/bonjour" data-navigo>Recherche “bonjour”</a>
-
-<p class="outro">
-  <span>Datas from &copy;Coinbase</span><br>
-  <span><a href="./tubeyou.html" class="hided">Developed by Sanoki</a></span><br>
-  <span>&copy;Finankox - 2025</span><br>
-</p>
-
-<script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
-<!--<script src="router.js"></script>-->
-
-
-</html>
-
