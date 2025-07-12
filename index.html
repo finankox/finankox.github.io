@@ -1,8 +1,8 @@
 <script type="importmap">
   {
     "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
-      "vue-router": "https://unpkg.com/vue-router@4/dist/vue-router.esm-browser.js"
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      "navigo": "https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"
     }
   }
 </script>
@@ -10,50 +10,44 @@
 
 
 <script type="module">
+import { createApp, ref } from 'vue'
 
-import { createApp, ref, onMounted } from 'vue'
-  import { createRouter, createWebHistory } from 'vue-router'
+;(function() {
+  const app = document.getElementById('app');
+  const router = new Navigo('/', { hash: false });
 
-  // Composant pour charger un fragment HTML
-  const Fragment = (file) => ({
-    template: `<div v-html="html"></div>`,
-    setup(props, { attrs }) {
-      const html = ref('')
-      onMounted(async () => {
-        const res = await fetch(file)
-        html.value = await res.text()
-        // Injecter term dans <span data-search-term>
-        const param = attrs.term
-        if (param) {
-          const span = document.querySelector('[data-search-term]')
-          if (span) span.textContent = decodeURIComponent(param)
-        }
-      })
-      return { html }
+  // Charge un fragment HTML et injecte le terme, si présent
+  function render(fragment, term = '') {
+    fetch(fragment)
+      .then(res => res.text())
+      .then(html => {
+        app.innerHTML = html;
+        // Injecte le mot-clé recherché
+        app.querySelectorAll('[data-search-term]').forEach(el => {
+          el.textContent = decodeURIComponent(term);
+        });
+      });
+  }
+
+  router
+    .on('/', () => render('index.html'))
+    .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
+    .notFound(() => render('404.html', window.location.pathname))
+    .resolve();
+
+  // Réactive le router sur les liens internes
+  document.body.addEventListener('click', e => {
+    if (e.target.matches('[data-navigo]')) {
+      e.preventDefault();
+      router.navigate(e.target.getAttribute('href'));
     }
-  })
-
-  // Déclaration des routes
-  const routes = [
-    { path: '/', component: Fragment('./index.html') },
-    {
-      path: '/searched/:term(.*)',
-      component: Fragment('./searched.html'),
-      props: route => ({ term: route.params.term })
-    },
-    { path: '/about', component: Fragment('./about.html') },
-    { path: '/:catchAll(.*)', component: Fragment('404.html') }
-  ]
-
-  const router = createRouter({
-    history: createWebHistory(),
-    routes
-  })
-
-
+  });
+})();
 
 createApp({
   setup() {
+
+    
 
     const priceBTC = ref(null)
     const priceETH = ref(null)
