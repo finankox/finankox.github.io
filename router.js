@@ -1,5 +1,4 @@
 ;(function() {
-    console.log("Hi guy")
   const app = document.getElementById('app');
   const router = new Navigo('/', { hash: false });
 
@@ -17,8 +16,8 @@
   }
 
   router
-    .on('/', () => render('index.html'))
-    .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
+    .on('/', () => render('home.html'))
+    .on('/searched/:term+', ({ data }) => render('searched.html', data.term))
     .notFound(() => render('404.html', window.location.pathname))
     .resolve();
 
