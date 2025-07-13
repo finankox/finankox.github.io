@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
+if(document.getElementById('app')) {
 
 createApp({
   setup() {
@@ -140,6 +140,6 @@ createApp({
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
 }).mount('#appHome')
-
+}
 });
 </script>
