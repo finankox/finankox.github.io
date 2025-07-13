@@ -163,6 +163,30 @@ function closeNav() {
     <script src="home.js"></script>
 </head>
 
+<nav class="nav_bar">
+  <h1>Finankox</h1>
+  <img src="./pictures/icon_site.png" class="logo">
+
+  <div id="mySidenav" class="sidenav">
+  <a id="closeBtn" href="#" class="close">×</a>
+  <ul>
+    <li><a href="/" data-navigo>Home</a></li>
+    <li><a href="search" data-navigo>Search</a></li>
+    <li><a href="about" data-navigo>About</a></li>
+  </ul>
+</div>
+
+<a href="#" id="openBtn">
+  <span class="burger-icon"></span>
+  <span class="burger-icon"></span>
+  <span class="burger-icon"></span>
+</a>
+</nav>
+
+<div class="jumped"></div>
+
+
+
 <div id="app">
     <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
       <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
