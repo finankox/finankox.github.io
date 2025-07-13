@@ -96,7 +96,7 @@ createApp({
     fetchPrice()
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
-}).mount('#app')
+}).mount('#appHome')
 
 
 var sidenav = document.getElementById("mySidenav");
@@ -187,8 +187,8 @@ function closeNav() {
 
 
 
-<div id="app">
-    <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
+<div id="appHome">
+    <p v-if="priceBTC != null" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
       <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
         {{ trendBTC === 'up' ? 'arrow_drop_up' : trendBTC === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
