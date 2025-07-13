@@ -1,12 +1,12 @@
-<html lang="en" id="appli">
-
+<html lang="en" id="appli"></html>
 
 <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
 <!--<script src="router.js"></script>-->
 
-<script>
+<script type="module">
 console.log("two")
-;(function() {
+
+document.addEventListener('DOMContentLoaded', function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
 
