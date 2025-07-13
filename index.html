@@ -14,6 +14,8 @@
 <script type="module">
 console.log("two_")
 
+import { createApp, ref } from 'vue'
+
 document.addEventListener('DOMContentLoaded', function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
@@ -47,28 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
       router.navigate(e.target.getAttribute('href'));
     }
   });
-});
 
 
-var sidenav = document.getElementById("mySidenav");
-var openBtn = document.getElementById("openBtn");
-var closeBtn = document.getElementById("closeBtn");
-
-openBtn.onclick = openNav;
-closeBtn.onclick = closeNav;
-
-/* Set the width of the side navigation to 250px */
-function openNav() {
-  sidenav.classList.add("active");
-}
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-  sidenav.classList.remove("active");
-}
 
 
-import { createApp, ref } from 'vue'
 
 createApp({
   setup() {
@@ -156,4 +140,6 @@ createApp({
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
 }).mount('#appHome')
+
+});
 </script>
