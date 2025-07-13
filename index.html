@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-
-      setTimeout(wafotv, 5000)
+if(document.getElementById('appHome')){
+setTimeout(wafotv, 500)
 
 function wafotv(){
     console.log("xhy1")
@@ -141,6 +141,7 @@ createApp({
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
 }).mount('#appHome')
+}
 }
 });
 </script>
