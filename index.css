@@ -140,6 +140,10 @@ h1{
   font-size: 170%;
 }
 
+.trav{
+  width: 100%;
+}
+
 /*Parametres responsive*/
 @media (max-aspect-ratio: 1/1) {
   /*Barre de navigation*/
