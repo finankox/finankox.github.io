@@ -25,26 +25,26 @@ createApp({
 
     async function fetchPrice() {
       try {
-        const responseBTC = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/ticker')
+        const responseBTC = await fetch('https://api.exchange.coinbase.com/products/BTC-USD/ticker')
         const resultBTC = await responseBTC.json()
         priceBTC.value = resultBTC.price
 
-        const responseETH = await fetch('https://api.exchange.coinbase.com/products/ETH-EUR/ticker')
+        const responseETH = await fetch('https://api.exchange.coinbase.com/products/ETH-USD/ticker')
         const resultETH = await responseETH.json()
         priceETH.value = resultETH.price
 
-        const responseSOL = await fetch('https://api.exchange.coinbase.com/products/SOL-EUR/ticker')
+        const responseSOL = await fetch('https://api.exchange.coinbase.com/products/SOL-USD/ticker')
         const resultSOL = await responseSOL.json()
         priceSOL.value = resultSOL.price
 
 
-        const responseBTC2 = await fetch('https://api.exchange.coinbase.com/products/BTC-EUR/trades?limit=2')
+        const responseBTC2 = await fetch('https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=2')
         const resultBTC2 = await responseBTC2.json()
 
-        const responseETH2 = await fetch('https://api.exchange.coinbase.com/products/ETH-EUR/trades?limit=2')
+        const responseETH2 = await fetch('https://api.exchange.coinbase.com/products/ETH-USD/trades?limit=2')
         const resultETH2 = await responseETH2.json()
 
-        const responseSOL2 = await fetch('https://api.exchange.coinbase.com/products/SOL-EUR/trades?limit=2')
+        const responseSOL2 = await fetch('https://api.exchange.coinbase.com/products/SOL-USD/trades?limit=2')
         const resultSOL2 = await responseSOL2.json()
 
 
@@ -151,19 +151,19 @@ function closeNav() {
 
 
 <div id="appHome">
-    <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} € 
+    <p v-if="priceBTC" class="price" translate="no">1 BTC = {{ Intl.NumberFormat('us-US').format(priceBTC) }} $ 
       <span v-if="trendBTC" class="material-symbols-outlined" :class="trendBTC" :style="{ color: colorBTC }">
         {{ trendBTC === 'up' ? 'arrow_drop_up' : trendBTC === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
     </p>
 
-    <p v-if="priceETH" class="price" translate="no">1 ETH = {{ Intl.NumberFormat('us-US').format(priceETH) }} € 
+    <p v-if="priceETH" class="price" translate="no">1 ETH = {{ Intl.NumberFormat('us-US').format(priceETH) }} $ 
       <span v-if="trendETH" class="material-symbols-outlined" :class="trendETH" :style="{ color: colorETH }">
         {{ trendETH === 'up' ? 'arrow_drop_up' : trendETH === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
     </p>
 
-    <p v-if="priceSOL" class="price" translate="no">1 SOL = {{ Intl.NumberFormat('us-US').format(priceSOL) }} € 
+    <p v-if="priceSOL" class="price" translate="no">1 SOL = {{ Intl.NumberFormat('us-US').format(priceSOL) }} $ 
       <span v-if="trendSOL" class="material-symbols-outlined" :class="trendSOL" :style="{ color: colorSOL }">
         {{ trendSOL === 'up' ? 'arrow_drop_up' : trendSOL === 'down' ? 'arrow_drop_down' : 'check_indeterminate_small' }}
       </span>
