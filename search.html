@@ -20,7 +20,7 @@ createApp({
   try {
     // 1. Si on connaît déjà le bon symbole (elsed), on utilise ça directement
     const symbol = elsed.value || choosed.value;
-    console.log(elsed.value, choosed.value)
+    console.log(elsed.value, choosed.value, 'finally it is', symbol.value)
 
     const response = await fetch(`https://api.exchange.coinbase.com/products/${symbol}-USD/ticker`);
     const result = await response.json();
