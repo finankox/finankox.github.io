@@ -168,27 +168,28 @@ createApp({
 }
 
 if(window.location.href == "https://finankox.github.io/about" || window.location.href == "https://finankox.github.io/about#"){
+
+  setTimeout(wafotv, 3000)
+
+function wafotv(){
   console.log("abooout")
   var sidenav = document.getElementById("mySidenav");
   var openBtn = document.getElementById("openBtn");
   var closeBtn = document.getElementById("closeBtn");
 
-openBtn.onclick = openNav;
-closeBtn.onclick = closeNav;
+  openBtn.onclick = openNav;
+  closeBtn.onclick = closeNav;
 
-/* Set the width of the side navigation to 250px */
-function openNav() {
-  sidenav.classList.add("active");
+  /* Set the width of the side navigation to 250px */
+  function openNav() {
+    sidenav.classList.add("active");
+  }
+
+  /* Set the width of the side navigation to 0 */
+  function closeNav() {
+    sidenav.classList.remove("active");
+  }
 }
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-  sidenav.classList.remove("active");
 }
-
-
-
-}
-
 });
 </script>
