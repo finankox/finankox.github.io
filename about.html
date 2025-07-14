@@ -44,8 +44,6 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("one")
-;(function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
 
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
       router.navigate(e.target.getAttribute('href'));
     }
   });
-})();
+
 
 
 var sidenav = document.getElementById("mySidenav");
@@ -97,6 +95,6 @@ function openNav() {
 function closeNav() {
   sidenav.classList.remove("active");
 }
-})
+});
 </script>
 </html>
