@@ -273,12 +273,13 @@ h1{
     height: 200px;
   }
 
-  /**Page about*/
+  /*Page about*/
   .desc{
         text-align: center;
         font-size: 400%;
   }
 
+  /*Page 404*/
   .notFound{
     font-size: 400%;
     text-align: center;
