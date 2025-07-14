@@ -19,7 +19,7 @@ createApp({
     async function fetchPrice() {
   try {
     // 1. Si on connaît déjà le bon symbole (elsed), on utilise ça directement
-    const symbol = elsed.value || choosed.value;
+    const symbol = choosed.value || elsed.value;
     console.log(elsed.value, choosed.value, 'finally it is', symbol.value)
 
     const response = await fetch(`https://api.exchange.coinbase.com/products/${symbol}-USD/ticker`);
@@ -56,9 +56,9 @@ createApp({
     function sea() {
       elsed.value = ref(null)
       fetchPrice()
-      setInterval(fetchPrice, 2000);
+      setInterval(fetchPrice, 1000);
 
-      setTimeout(wafotv, 500)
+      setTimeout(wafotv, 1002)
 
       function wafotv() {
         let currentSymbol = "COINBASE:" + elsed.value + "USD|1D";
