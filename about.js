@@ -1,4 +1,4 @@
-  console.log("one")
+  console.log("one**")
 ;(function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });

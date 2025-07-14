@@ -215,7 +215,7 @@ function closeNav() {
   <div class="jumped"></div>
 
   <div v-if="elsed" class="price">
-    1 {{elsed}} : <span>{{price}} $</span>
+    1 {{elsed}} : <span>{{Intl.NumberFormat('us-US').format(price) }} $</span>
   </div>
 </div>
 
