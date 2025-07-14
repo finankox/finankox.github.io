@@ -3,7 +3,7 @@
     font-size: 300%;
     margin-left: 35%;
     font-weight: bold;
-  }
+}
 
 .material-symbols-outlined {
     font-size: 120%;
@@ -140,6 +140,12 @@ h1{
   font-size: 170%;
 }
 
+.notFound{
+    font-size: 300%;
+    text-align: center;
+    font-weight: bold;
+}
+
 .trav{
   width: 100%;
 }
@@ -271,6 +277,12 @@ h1{
   .desc{
         text-align: center;
         font-size: 400%;
+  }
+
+  .notFound{
+    font-size: 400%;
+    text-align: center;
+    font-weight: bold;
   }
 
   .trav{
