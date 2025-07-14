@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-if(window.location.href == "https://finankox.github.io/" ){
+if(window.location.href == "https://finankox.github.io/" || window.location.href == "https://finankox.github.io/#"){
 setTimeout(wafotv, 500)
 
 function wafotv(){
@@ -159,7 +159,7 @@ createApp({
       }
     }
     
-    setInterval(fetchPrice, 1000);
+    setInterval(fetchPrice, 10);
     fetchPrice()
     return { priceBTC, priceETH, priceSOL, trendBTC, trendETH, trendSOL, colorBTC, colorETH, colorSOL }
   }
