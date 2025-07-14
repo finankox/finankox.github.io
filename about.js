@@ -1,5 +1,5 @@
   console.log("one**")
-;(function() {
+/*;(function() {
   const app = document.getElementById('appli');
   const router = new Navigo('/', { hash: false });
 
@@ -32,7 +32,7 @@
       router.navigate(e.target.getAttribute('href'));
     }
   });
-})();
+})();*/
 
 
 var sidenav = document.getElementById("mySidenav");
