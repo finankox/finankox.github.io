@@ -1,0 +1,26 @@
+# Configuration de base du site
+title: Mon Site Jekyll
+description: Un site web construit avec Jekyll et hébergé sur GitHub Pages
+baseurl: ""
+url: "https://finankox.github.io" 
+
+# Configuration des pages
+defaults:
+  - scope:
+      path: "index.html"
+      type: "pages"
+    values:
+      permalink: /
+
+# Configuration pour la page 'about'
+  - scope:
+      path: "about.html"
+      type: "pages"
+    values:
+      permalink: /about
+
+  - scope:
+      path: "search.html"
+      type: "pages"
+    values:
+      permalink: /search

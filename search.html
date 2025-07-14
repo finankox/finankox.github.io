@@ -7,7 +7,6 @@
 </script>
 
 <script type="module">
-  console.log("one")
 import { createApp, ref } from 'vue';
     
 createApp({
@@ -19,8 +18,7 @@ createApp({
     async function fetchPrice() {
   try {
     // 1. Si on connaît déjà le bon symbole (elsed), on utilise ça directement
-    const symbol = choosed.value || elsed.value;
-    console.log(elsed.value, choosed.value, 'finally it is', symbol.value)
+    const symbol = elsed.value || choosed.value;
 
     const response = await fetch(`https://api.exchange.coinbase.com/products/${symbol}-USD/ticker`);
     const result = await response.json();
@@ -58,7 +56,7 @@ createApp({
       fetchPrice()
       setInterval(fetchPrice, 1000);
 
-      setTimeout(wafotv, 1002)
+      setTimeout(wafotv, 2000)
 
       function wafotv() {
         let currentSymbol = "COINBASE:" + elsed.value + "USD|1D";
@@ -133,42 +131,6 @@ function openNav() {
 function closeNav() {
   sidenav.classList.remove("active");
 }
-
-
-;(function() {
-  const app = document.getElementById('appli');
-  const router = new Navigo('/', { hash: false });
-
-  // Charge un fragment HTML et injecte le terme, si présent
-  function render(fragment, term = '') {
-    fetch(fragment)
-      .then(res => res.text())
-      .then(html => {
-        app.innerHTML = html;
-        // Injecte le mot-clé recherché
-        app.querySelectorAll('[data-search-term]').forEach(el => {
-          el.textContent = decodeURIComponent(term);
-        });
-      });
-  }
-
-  router
-    .on('/', () => render('home.html'))
-    .on('/about', () => render('about.html'))
-    .on('/search', () => render('search.html'))
-
-    .on('/searched/:term+', ({ data }) => render('indeed.html', data.term))
-    .notFound(() => render('404.html', window.location.pathname))
-    .resolve();
-
-  // Réactive le router sur les liens internes
-  document.body.addEventListener('click', e => {
-    if (e.target.matches('[data-navigo]')) {
-      e.preventDefault();
-      router.navigate(e.target.getAttribute('href'));
-    }
-  });
-})();
 </script>
 
 <html lang="en">
@@ -178,7 +140,6 @@ function closeNav() {
   <title>Finankox</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="index.css">
-  <script src="search.js"></script>
 </head>
 
 <nav class="nav_bar">
@@ -188,9 +149,9 @@ function closeNav() {
   <div id="mySidenav" class="sidenav">
   <a id="closeBtn" href="#" class="close">×</a>
   <ul>
-    <li><a href="/" data-navigo>Home</a></li>
-    <li><a href="search" data-navigo>Search</a></li>
-    <li><a href="about" data-navigo>About</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/search">Search</a></li>
+    <li><a href="/about">About</a></li>
   </ul>
 </div>
 
@@ -226,9 +187,6 @@ function closeNav() {
   <div class="tradingview-widget-container__widget"></div>
   <div class="tradingview-widget-copyright"></div>
 </div>
-
-<script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
-<!--<script src="router.js"></script>-->
 
 
 <style>
