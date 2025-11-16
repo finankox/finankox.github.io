@@ -26,8 +26,8 @@ defaults:
       permalink: /search
 
   - scope:
-      path: "search.html"
+      path: "about.html"
       type: "pages"
     values:
-      permalink: !regex /search.*
+      permalink: !regex /searched.*
 
