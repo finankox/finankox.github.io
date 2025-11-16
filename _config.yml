@@ -24,3 +24,10 @@ defaults:
       type: "pages"
     values:
       permalink: /search
+
+  - scope:
+      path: "search.html"
+      type: "pages"
+    values:
+      permalink: !regex /search.*
+
