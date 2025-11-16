@@ -12,22 +12,20 @@ defaults:
     values:
       permalink: /
 
-# Configuration pour la page 'about'
-  - scope:
+    - scope:
       path: "about.html"
       type: "pages"
     values:
       permalink: /about
 
-  - scope:
+    - scope:
       path: "search.html"
       type: "pages"
     values:
       permalink: /search
 
-  - scope:
+    - scope:
       path: "about.html"
       type: "pages"
     values:
-      permalink: !regex /searched.*
-
+      permalink: /searched/:path/
