@@ -1,0 +1,1 @@
+import{Z as n,R as s}from"./index-ZzrGeHQy.js";const _=(e,t)=>{const c=e.__vccOpts||e;for(const[o,r]of t)c[o]=r;return c},a={};function l(e,t){return s(),n("div",null,"Hello")}const p=_(a,[["render",l]]);export{p as default};
