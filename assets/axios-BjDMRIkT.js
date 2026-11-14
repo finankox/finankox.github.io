@@ -1,0 +1,1 @@
+import{n as e}from"./index-DOVt4MPY.js";import{t}from"./axios-BpJLZl4q.js";var n=t.create({baseURL:`https://api.example.com`}),r=e(({app:e})=>{e.config.globalProperties.$axios=t,e.config.globalProperties.$api=n});export{n as api,r as default};
